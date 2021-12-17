@@ -18,7 +18,7 @@ export default function RandomPost() {
 
   const colRef = collection(db, "posts");
 
-  const [activity, setActivity] = useState("");
+  const [post, setPost] = useState("");
   const [itemToDelete, setItemToDelete] = useState("");
   const [dataBaseItems, setDatabaseItems] = useState([]);
   const [itemToUpdate, setItemToUpdate] = useState("");
@@ -32,11 +32,11 @@ export default function RandomPost() {
       date: new Date(),
       displayDate: theDate,
       author: currentUser?.email,
-      activity: activity,
+      post: post,
       active: false,
       comments: [],
     });
-    setActivity("");
+    setPost("");
     fetchItems();
   }
 
@@ -60,7 +60,7 @@ export default function RandomPost() {
       console.log("Updating");
       const docToUpdate = doc(db, "posts", itemToUpdate);
       updateDoc(docToUpdate, {
-        activity: editedEntry,
+        post: editedEntry,
       }).then(() => {
         console.log("It supposed to be updated");
       });
@@ -91,10 +91,10 @@ export default function RandomPost() {
         <input
           rows="10"
           cols="70"
-          value={activity}
-          onChange={(e) => setActivity(e.target.value)}
+          value={post}
+          onChange={(e) => setPost(e.target.value)}
           type="text"
-          name="activity"
+          name="post"
           required
         />
         <br />
