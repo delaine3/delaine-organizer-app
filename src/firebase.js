@@ -10,15 +10,13 @@ import {
   signOut,
 } from "firebase/auth";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDlbAcw8uM21ci6gjcK9nnU8SueyOdOGsA",
-  authDomain: "firefly-16696.firebaseapp.com",
-  projectId: "firefly-16696",
-  storageBucket: "firefly-16696.appspot.com",
-  messagingSenderId: "937474357471",
-  appId: "1:937474357471:web:76690395960b787f6e916a",
-  measurementId: "G-M8GW0MKM8Q",
+  apiKey: "AIzaSyAfzuHCk1wAQDxGugNkKgClHh-Ed1NlRo4",
+  authDomain: "organizer-59d66.firebaseapp.com",
+  projectId: "organizer-59d66",
+  storageBucket: "organizer-59d66.appspot.com",
+  messagingSenderId: "269531459889",
+  appId: "1:269531459889:web:369d5d4f22cd69e6aa0010",
 };
 // Initialize Firebase
 initializeApp(firebaseConfig);
