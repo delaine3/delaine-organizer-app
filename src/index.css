@@ -1,8 +1,8 @@
 .insertedItem {
   display: flex-wrap;
   border: 5px solid #000000;
-  padding: 20px;
-  margin: 10px;
+  padding: 3vw;
+  margin: 5vw;
   background-color: #ffaa00;
 }
 
@@ -23,20 +23,19 @@
 }
 input {
   display: flex-wrap;
-
-  font-size: 15px;
+  font-size: 3vw;
 }
 
 button {
-  display: flex;
-
+  display: flex-wrap;
+  font-size: 2vw;
   background-color: #cc4499;
 
-  font-size: 40px;
   margin: 10px;
 }
 .App {
   display: flex-wrap;
+  word-wrap: break-word;
 
   top: 100px;
   text-align: center;
