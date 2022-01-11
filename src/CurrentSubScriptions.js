@@ -18,11 +18,8 @@ export default function CurrentSubScriptions() {
 
   const colRef = collection(db, "currentSubscriptions");
 
-  const [activeStatus, setActiveStatus] = useState(false);
   const [subscription, setSubscription] = useState("");
-  const [itemToDelete, setItemToDelete] = useState("");
   const [dataBaseItems, setDatabaseItems] = useState([]);
-  const [itemToUpdate, setItemToUpdate] = useState("");
   const [updating, setUpdating] = useState(false);
   const [editedEntry, setEditedEntry] = useState("");
 
@@ -54,7 +51,7 @@ export default function CurrentSubScriptions() {
     fetchSubscriptions();
   }, []);
 
-  function updateSubscription(e) {
+  function updateSubscription(itemToUpdate) {
     console.log("To be UPDATED " + itemToUpdate);
     if (itemToUpdate !== "") {
       console.log("Updating");
@@ -69,10 +66,8 @@ export default function CurrentSubScriptions() {
       fetchSubscriptions();
     }
   }
-  async function changeActiveStatus(e) {
-    return setActiveStatus(e);
-  }
-  function toggleActiveSubscription(e) {
+
+  function toggleActiveSubscription(itemToUpdate,activeStatus) {
     if (itemToUpdate !== "") {
       const docToUpdate = doc(db, "currentSubscriptions", itemToUpdate);
       updateDoc(docToUpdate, {
@@ -83,7 +78,7 @@ export default function CurrentSubScriptions() {
     }
   }
 
-  function deleteSubscription(e) {
+  function deleteSubscription(itemToDelete) {
     console.log("To be Deleted " + itemToDelete);
     if (itemToDelete !== "") {
       console.log("Deleting");
@@ -116,8 +111,7 @@ export default function CurrentSubScriptions() {
       <div>
         {" "}
         <h2>Subscription List</h2>
-        for some reason you have to press the Active/inactive button 2 times
-        before it updates, idk why yet
+      
         <div>
           {dataBaseItems.map((database, id) => (
             <div className="insertedItem" key={database.id}>
@@ -126,9 +120,7 @@ export default function CurrentSubScriptions() {
               <br />
               <div
                 onClick={() => {
-                  setItemToUpdate(database.id);
-                  changeActiveStatus(!database.active);
-                  toggleActiveSubscription();
+                  toggleActiveSubscription(database.id,!database.active);
                 }}
               >
                 {database.active ? (
@@ -147,7 +139,7 @@ export default function CurrentSubScriptions() {
                   />{" "}
                   <button
                     onClick={(e) => {
-                      updateSubscription();
+                      updateSubscription( database.id );
                     }}
                   >
                     Save
@@ -159,7 +151,6 @@ export default function CurrentSubScriptions() {
               <br />
               <button
                 onClick={(e) => {
-                  setItemToUpdate(database.id);
                   setUpdating(true);
                 }}
               >
@@ -167,9 +158,8 @@ export default function CurrentSubScriptions() {
               </button>
               <button
                 className="delete"
-                onClick={(e) => {
-                  setItemToDelete(database.id);
-                  deleteSubscription();
+                onClick={(itemToDelete) => {
+                  deleteSubscription(database.id);
                 }}
               >
                 Delete

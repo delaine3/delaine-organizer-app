@@ -19,7 +19,6 @@ export default function Places() {
 
   const [location, setLocation] = useState("");
   const [place, setPlace] = useState("");
-  const [itemToDelete, setItemToDelete] = useState("");
   const [dataBaseItems, setDatabaseItems] = useState([]);
 
   function addPlace(e) {
@@ -53,7 +52,7 @@ export default function Places() {
     fetchPlaces();
   }, []);
 
-  function deletePlace(e) {
+  function deletePlace(itemToDelete) {
     console.log("To be Deleted " + itemToDelete);
     if (itemToDelete !== "") {
       console.log("Deleting");
@@ -112,8 +111,7 @@ export default function Places() {
               <button
                 className="delete"
                 onClick={(e) => {
-                  setItemToDelete(database.id);
-                  deletePlace();
+                  deletePlace(database.id);
                 }}
               >
                 Delete

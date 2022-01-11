@@ -19,9 +19,7 @@ export default function RandomPost() {
   const colRef = collection(db, "posts");
 
   const [post, setPost] = useState("");
-  const [itemToDelete, setItemToDelete] = useState("");
   const [dataBaseItems, setDatabaseItems] = useState([]);
-  const [itemToUpdate, setItemToUpdate] = useState("");
   const [updating, setUpdating] = useState(false);
   const [editedEntry, setEditedEntry] = useState("");
 
@@ -54,7 +52,7 @@ export default function RandomPost() {
     fetchItems();
   }, []);
 
-  function updateItem(e) {
+  function updateItem(itemToUpdate) {
     console.log("To be UPDATED " + itemToUpdate);
     if (itemToUpdate !== "") {
       console.log("Updating");
@@ -70,7 +68,7 @@ export default function RandomPost() {
     }
   }
 
-  function deleteItem(e) {
+  function deleteItem(itemToDelete) {
     console.log("To be Deleted " + itemToDelete);
     if (itemToDelete !== "") {
       console.log("Deleting");
@@ -119,7 +117,7 @@ export default function RandomPost() {
                   />{" "}
                   <button
                     onClick={(e) => {
-                      updateItem();
+                      updateItem(database.id);
                     }}
                   >
                     Save
@@ -131,7 +129,6 @@ export default function RandomPost() {
               <br />
               <button
                 onClick={(e) => {
-                  setItemToUpdate(database.id);
                   setUpdating(true);
                 }}
               >
@@ -140,8 +137,7 @@ export default function RandomPost() {
               <button
                 className="delete"
                 onClick={(e) => {
-                  setItemToDelete(database.id);
-                  deleteItem();
+                  deleteItem(database.id);
                 }}
               >
                 Delete

@@ -18,7 +18,6 @@ export default function ShowsToWatch() {
 
   const colRef = collection(db, "currentShows");
 
-  const [activeStatus, setActiveStatus] = useState(false);
   const [show, setShow] = useState("");
   const [itemToDelete, setItemToDelete] = useState("");
   const [dataBaseItems, setDatabaseItems] = useState([]);
@@ -54,7 +53,7 @@ export default function ShowsToWatch() {
     fetchItems();
   }, []);
 
-  function updateItem(e) {
+  function updateItem(itemToUpdate) {
     console.log("To be UPDATED " + itemToUpdate);
     if (itemToUpdate !== "") {
       console.log("Updating");
@@ -69,14 +68,8 @@ export default function ShowsToWatch() {
       fetchItems();
     }
   }
-  async function changeActiveStatus(e) {
-    const setItem = await setItemToUpdate(e.id);
-    console.log(setItem);
-    const isActive = await setActiveStatus(!e.active);
-    console.log(isActive);
-    return toggleDone();
-  }
-  function toggleDone(e) {
+
+  function toggleDone(activeStatus,itemToUpdate) {
     if (itemToUpdate !== "") {
       const docToUpdate = doc(db, "currentShows", itemToUpdate);
       updateDoc(docToUpdate, {
@@ -86,7 +79,7 @@ export default function ShowsToWatch() {
     fetchItems();
   }
 
-  function deleteItem(e) {
+  function deleteItem(itemToDelete) {
     console.log("To be Deleted " + itemToDelete);
     if (itemToDelete !== "") {
       console.log("Deleting");
@@ -120,8 +113,7 @@ export default function ShowsToWatch() {
       <div>
         {" "}
         <h2>Show List</h2>
-        for some reason you have to press the Active/inactive button 2 times
-        before it updates, idk why yet
+      
         <div>
           {dataBaseItems.map((database, id) => (
             <div className="insertedItem" key={database.id}>
@@ -130,7 +122,7 @@ export default function ShowsToWatch() {
               <br />
               <div
                 onClick={() => {
-                  changeActiveStatus(database);
+                  toggleDone(!database.active,database.id);
                 }}
               >
                 {database.active ? (
@@ -149,7 +141,7 @@ export default function ShowsToWatch() {
                   />{" "}
                   <button
                     onClick={(e) => {
-                      updateItem();
+                      updateItem(database.id);
                     }}
                   >
                     Save
@@ -170,8 +162,7 @@ export default function ShowsToWatch() {
               <button
                 className="delete"
                 onClick={(e) => {
-                  setItemToDelete(database.id);
-                  deleteItem();
+                  deleteItem(database.id);
                 }}
               >
                 Delete
