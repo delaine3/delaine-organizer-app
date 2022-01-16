@@ -6,11 +6,11 @@ export default function LoggedIn() {
   const currentUser = useAuth();
 
   return (
-    <div>
+    <div className="app">
       <div>Hey: {currentUser?.email} </div>
-      <ul className="center icon-grid">
-        <li className="nav-link">
-          <NavLink activestyle={{ color: "red" }} to="/watch">
+      <ul className=" item-grid">
+        <li  className="icon">
+          <NavLink  to="/watch">
             {" "}
             <img
               src="https://icon-library.com/images/film-icon/film-icon-1.jpg"
@@ -19,11 +19,13 @@ export default function LoggedIn() {
               height="150px"
               className="writing-excercises-icons"
             />
-            Shows{" "}
+           <p className="icon-descriptor"> Shows</p>
+
+            {" "}
           </NavLink>
         </li>
-        <li className="nav-link">
-          <NavLink activestyle={{ color: "red" }} to="/randompost">
+        <li  className="icon">
+          <NavLink  to="/randompost">
             {" "}
             <img
               src="https://i.ibb.co/RzmcpwH/soap-box-derby-soapbox-clip-art-openclipart-image-png-favpng-Pj-VB9ti-L1hnf45swquv-Ki5pcy.png"
@@ -32,11 +34,13 @@ export default function LoggedIn() {
               height="150px"
               className="writing-excercises-icons"
             />
-            Random Post{" "}
+            {" "}
+            <p className="icon-descriptor"> Random Post</p>
+
           </NavLink>
         </li>
-        <li className="nav-link">
-          <NavLink activestyle={{ color: "red" }} to="/activities">
+        <li  className="icon">
+          <NavLink to="/activities">
             {" "}
             <img
               width="150px"
@@ -45,11 +49,13 @@ export default function LoggedIn() {
               alt="72-720902-this-is-an-image-of-a-clipboard-do"
               className="writing-excercises-icons"
             />
-            Things to do
+           
+            <p className="icon-descriptor">  Things to do</p>
+
           </NavLink>
         </li>
-        <li className="nav-link">
-          <NavLink activestyle={{ color: "red" }} to="/places">
+        <li  className="icon">
+          <NavLink  to="/places">
             {" "}
             <img
               width="150px"
@@ -58,7 +64,8 @@ export default function LoggedIn() {
               alt="location-maps-navigation-pin-place-icon-location-icon-position-934743"
               className="writing-excercises-icons"
             />
-            Places to go
+            <p className="icon-descriptor">Places to go</p>
+
           </NavLink>
         </li>
       </ul>

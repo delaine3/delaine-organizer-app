@@ -90,11 +90,11 @@ export default function CurrentSubScriptions() {
     }
   }
   return (
-    <div className="post-component">
+    <div  className="category">
       <br />
       <br />
 
-      <form className="add">
+      <form className="post-component">
         <input
           rows="10"
           cols="70"
@@ -105,14 +105,14 @@ export default function CurrentSubScriptions() {
           required
         />
         <br />
-        <button onClick={addSubscription}>Add Subscription</button>
+        <button className="add-post" onClick={addSubscription}>Add Subscription</button>
       </form>
 
-      <div>
+      <div >
         {" "}
         <h2>Subscription List</h2>
       
-        <div>
+        <div className="item-grid">
           {dataBaseItems.map((database, id) => (
             <div className="insertedItem" key={database.id}>
               <p className="date">{database.displayDate}</p>
@@ -150,6 +150,7 @@ export default function CurrentSubScriptions() {
               )}
               <br />
               <button
+              className="edit"
                 onClick={(e) => {
                   setUpdating(true);
                 }}

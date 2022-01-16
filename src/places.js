@@ -64,11 +64,11 @@ export default function Places() {
     }
   }
   return (
-    <div className=" post-component">
+    <div  className="category">
       <br />
       <br />
 
-      <form className="add">
+      <form className="post-component">
         <label>Place:</label>
         <input
           rows="10"
@@ -83,8 +83,8 @@ export default function Places() {
         <br />
         <label>Where:</label>
         <input
-          rows="10"
-          cols="70"
+          rows="4"
+          cols="50"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           type="text"
@@ -93,13 +93,13 @@ export default function Places() {
         />
         <br />
         <br />
-        <button onClick={addPlace}> Add Place</button>
+        <button className="add-post" onClick={addPlace}> Add Place</button>
       </form>
 
       <div>
         {" "}
         <h1>Place List</h1>
-        <div>
+        <div className="item-grid">
           {dataBaseItems.map((database, id) => (
             <div className="insertedItem" key={database.id}>
               <p className="date">{database.displayDate}</p>

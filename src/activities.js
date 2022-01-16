@@ -93,14 +93,14 @@ export default function Activities() {
   }
 
   return (
-    <div className="post-component">
+    <div  className="category">
       <br />
       <br />
 
-      <form className="add">
-        <input
-          rows="10"
-          cols="70"
+      <form className="post-component">
+        <textarea
+          rows="4"
+          cols="50"
           value={activity}
           onChange={(e) => setActivity(e.target.value)}
           type="text"
@@ -108,14 +108,14 @@ export default function Activities() {
           required
         />
         <br />
-        <button onClick={addItem}>Add activity</button>
+        <button className="add-post" onClick={addItem}>Add activity</button>
       </form>
 
       <div>
         {" "}
-        <h2>Activity List</h2>
+        <h1>Activity List</h1>
       
-        <div>
+        <div className=" item-grid">
           {dataBaseItems.map((database, id) => (
             <div className="insertedItem" key={database.id}>
               <p className="date">{database.displayDate}</p>
@@ -153,6 +153,7 @@ export default function Activities() {
               )}
               <br />
               <button
+                className="edit"
                 onClick={(e) => {
                   setUpdating(true);
                 }}

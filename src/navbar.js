@@ -29,24 +29,26 @@ export default function NavBar() {
   return (
     <div className="navBar">
       {" "}
-      <ul>
-        <li>
-          <NavLink activestyle={{ color: "red" }} to="/">
+      <div>
+        <span>
+          <NavLink           
+          className="nav-link"
+          to="/">
             {" "}
             Dashboard
           </NavLink>
-        </li>
-        <li>
-          <button
-            activestyle={{ color: "orange" }}
+        </span>
+        <span>
+          <NavLink
+          className="nav-link"
             to="/"
             disabled={loading || !currentUser}
             onClick={handleLogout}
           >
             Log Out{" "}
-          </button>
-        </li>
-      </ul>
+          </NavLink>
+        </span>
+      </div>
     </div>
   );
 }

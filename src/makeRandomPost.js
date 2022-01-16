@@ -81,27 +81,28 @@ export default function RandomPost() {
   }
 
   return (
-    <div className="post-component">
-      <br />
-      <br />
+    <div  className="category">
+    
+  
+      <div>
       <h1> Make a post, any post you like</h1>
-      <form className="add">
-        <input
-          rows="10"
-          cols="70"
+
+      <form className="post-component">
+        <div>
+        <textarea
+          rows="4"
+          cols="50"
           value={post}
           onChange={(e) => setPost(e.target.value)}
           type="text"
           name="post"
           required
-        />
-        <br />
-        <button onClick={addItem}>Add Post</button>
+        /></div>
+        <button className="add-post" onClick={addItem}>Add Post</button>
       </form>
-      <div>
         {" "}
         <h2>Post List</h2>
-        <div>
+        <div className="item-grid">
           {dataBaseItems.map((database, id) => (
             <div className="insertedItem" key={database.id}>
               <p className="date">{database.displayDate}</p>
@@ -128,6 +129,7 @@ export default function RandomPost() {
               )}
               <br />
               <button
+                className="edit"
                 onClick={(e) => {
                   setUpdating(true);
                 }}

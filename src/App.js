@@ -7,7 +7,6 @@ import ShowsToWatch from "./ShowsToWatch";
 import Dashboard from "./dashboard";
 import Activities from "./activities";
 import Places from "./places";
-import ChangeProfilePic from "./changeProfilePic";
 import Watch from "./watch";
 
 export default function App() {
@@ -71,14 +70,7 @@ export default function App() {
             </div>
           }
         ></Route>
-        <Route
-          path="/changeProfilePic"
-          element={
-            <div>
-              <ChangeProfilePic />
-            </div>
-          }
-        ></Route>
+     
       </Routes>
     </div>
   );

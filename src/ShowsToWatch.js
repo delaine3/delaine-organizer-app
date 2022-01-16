@@ -18,12 +18,16 @@ export default function ShowsToWatch() {
 
   const colRef = collection(db, "currentShows");
 
-  const [show, setShow] = useState("");
-  const [itemToDelete, setItemToDelete] = useState("");
+  const [currentSeason, setcurrentSeason] = useState("");
+
   const [dataBaseItems, setDatabaseItems] = useState([]);
-  const [itemToUpdate, setItemToUpdate] = useState("");
   const [updating, setUpdating] = useState(false);
   const [editedEntry, setEditedEntry] = useState("");
+
+  const [form, setForm]= useState({
+    show: "",
+
+  });
 
   function addItem(e) {
     e.preventDefault();
@@ -32,10 +36,18 @@ export default function ShowsToWatch() {
       date: new Date(),
       displayDate: theDate,
       author: currentUser?.email,
-      show: show,
+      show: form.show,
       active: false,
+      completed: false,
+      currentSeason: currentSeason
     });
-    setShow("");
+    setcurrentSeason("")
+
+    setForm({
+      ...form,
+      show: "",
+    });
+
     fetchItems();
   }
 
@@ -68,8 +80,16 @@ export default function ShowsToWatch() {
       fetchItems();
     }
   }
-
-  function toggleDone(activeStatus,itemToUpdate) {
+  function toggleCompletetionStatus(completionStatus,itemToUpdate) {
+    if (itemToUpdate !== "") {
+      const docToUpdate = doc(db, "currentShows", itemToUpdate);
+      updateDoc(docToUpdate, {
+        completed: completionStatus,
+      });
+    }
+    fetchItems();
+  }
+  function toggleActive(activeStatus,itemToUpdate) {
     if (itemToUpdate !== "") {
       const docToUpdate = doc(db, "currentShows", itemToUpdate);
       updateDoc(docToUpdate, {
@@ -90,46 +110,84 @@ export default function ShowsToWatch() {
       fetchItems();
     }
   }
+  const handleChange = (e) => {
+    const target = e.target;
+    var { name, value } = e.target;
+
+    if (name == "expiry_date" || name == "foodType" || name == "quantityUnit") {
+      value = target.value.toString();
+    } else {
+      value = target.name === "should_refrigerate" ? target.checked : target.value;
+    }
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+    console.log(value);
+  };
 
   return (
-    <div className="post-component">
+    <div className="category" >
       <br />
       <br />
 
-      <form className="add">
+      <form className="post-component">
+        <label>Show Name</label>
         <input
           rows="10"
           cols="70"
-          value={show}
-          onChange={(e) => setShow(e.target.value)}
+          value={form.show}
+          onChange={handleChange}
           type="text"
           name="show"
           required
         />
         <br />
-        <button onClick={addItem}>Add show</button>
+        <label>Current Season</label>
+        <input 
+        value={currentSeason}
+        onChange={(e)=>setcurrentSeason(e.target.value)}
+        type="text"
+        name="currentSeason"/>
+
+        <button className="add-post" onClick={addItem}>Add show</button>
       </form>
 
       <div>
         {" "}
         <h2>Show List</h2>
       
-        <div>
+        <div className=" item-grid">
           {dataBaseItems.map((database, id) => (
-            <div className="insertedItem" key={database.id}>
-              <p className="date">{database.displayDate}</p>
-              <p> {database.show}</p>Added by: <i>{database.author}</i>
-              <br />
-              <div
+            <div className={updating ? "insertedItem-tall" : "insertedItem-short"} key={database.id}>
+          <p> Show: {database.show}</p>    
+          {    database.currentSeason ? <p> Current Season: {database.currentSeason }</p>  : <></>            
+}
+          
+          <div className="active-buttons-container">
+              <div 
                 onClick={() => {
-                  toggleDone(!database.active,database.id);
+                  toggleActive(!database.active,database.id);
                 }}
               >
                 {database.active ? (
-                  <button className="activeStyle">In Progress</button>
+                  <button className="activeStyleProgress">In Progress</button>
                 ) : (
-                  <button className="inactiveStyle">Not In Progress</button>
+                  <button className="inactiveStyleProgress">Not In Progress</button>
                 )}
+              </div>
+              <div
+                onClick={() => {
+                  toggleCompletetionStatus(!database.completed,database.id);
+                }}
+              >
+                {database.completed ? (
+                  <button className="activeStyle">Completed</button>
+                ) : (
+                  <button className="inactiveStyle">Not Completed</button>
+                )}
+              </div>
               </div>
               {updating ? (
                 <div>
@@ -152,8 +210,8 @@ export default function ShowsToWatch() {
               )}
               <br />
               <button
+                className="edit"
                 onClick={(e) => {
-                  setItemToUpdate(database.id);
                   setUpdating(true);
                 }}
               >
@@ -167,6 +225,8 @@ export default function ShowsToWatch() {
               >
                 Delete
               </button>
+              <p>Added by: {database.author}</p>
+
             </div>
           ))}
         </div>

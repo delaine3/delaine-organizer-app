@@ -56,7 +56,7 @@ export default function Auth() {
 
   return (
     <div id="auth">
-      <div id="fields">
+      <div >
         <h1>You are not logged in. Sign up or login</h1>
         <input ref={emailRef} placeholder="Email" />
         <input ref={passwordRef} type="password" placeholder="Password" />

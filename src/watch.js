@@ -10,14 +10,14 @@ export default function Watch() {
   };
 
   return (
-    <div className="post-component">
+    <div className="app post-component">
       {isLoggedIn ? (
         <div>
           <br />
           <br />
-          <ul className=" icon-grid">
-            <li className="nav-link">
-              <NavLink activestyle={{ color: "red" }} to="/showsToWatch">
+          <ul className=" item-grid">
+            <li className="icon">
+              <NavLink  to="/showsToWatch">
                 {" "}
                 <img
                   src="https://img.icons8.com/clouds/2x/tv-show.png"
@@ -26,12 +26,11 @@ export default function Watch() {
                   height="150px"
                   className="writing-excercises-icons"
                 />
-                Shows To watch
+               <p className="icon-descriptor"> To Watch</p>
               </NavLink>
             </li>
-            <li className="nav-link">
+            <li className="icon">
               <NavLink
-                activestyle={{ color: "red" }}
                 to="/currentSubscriptions"
               >
                 {" "}
@@ -42,7 +41,8 @@ export default function Watch() {
                   height="150px"
                   className="writing-excercises-icons"
                 />
-                Current Subscriptions
+
+               <p className="icon-descriptor"> Current Subscriptions</p>
               </NavLink>
             </li>
           </ul>

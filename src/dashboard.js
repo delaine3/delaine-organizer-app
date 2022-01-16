@@ -7,7 +7,7 @@ export default function Dashboard() {
   const { loginStatus } = loginReducer;
 
   return (
-    <div className="dashboard">
+    <div className="category dashboard">
       {loginStatus ? <LoggedIn /> : <LoggedOut />}
     </div>
   );
