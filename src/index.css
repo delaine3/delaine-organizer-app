@@ -16,21 +16,30 @@ align-items: center;
 ul{
   list-style-type: none;  
 }
-
+.updating-show{
+  font-size: medium ;
+}
 .insertedItem-tall{
 border: 2px solid black;
 margin: 10px;
-padding: 30px;
-width: 400px;
-height: 320px;
+padding: 20px;
+width: 300px;
+height: 430px;
 background-color:#aa66aa;
+align-items: center;
 }
+.show{
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
 .insertedItem-short{
   border: 2px solid black;
   margin: 10px;
-  padding: 30px;
-  width: 400px;
-  height: 220px;
+  padding: 20px;
+  width: 300px;
+  height: 350px;
   background-color:#aa66aa;
   }
 
@@ -38,9 +47,10 @@ button{
   margin: 1%;  
   padding: 2px;
   background-color: #ffbbaa;
+  font-size: 15px;
 }
 button:hover{
-  background-color: rgb(236, 216, 186);
+  background-color: rgb(255, 255, 255);
 }
 .active-buttons-container{
   flex-wrap: wrap;
@@ -95,6 +105,9 @@ padding: 20px;
 h1, h2{
   text-align: center;
 }
+p{
+  font-size: 21px;
+}
 .post-text-area{
   margin: 200px;
 }
@@ -110,12 +123,17 @@ a{
   background-color: #99dd66;
 }
 .inactiveStyle {
-  background-color: #666688bd;
+  background-color: #bbbbd8bd;
 }
-.inactiveStyle:hover {
-  background-color: #808bc7bd;
+
+.activeStyleProgress{
+  background-color:#7788ff  ;
+}
+.inactiveStyleProgress{
+  background-color:#ffcc33  ;
 }
 .delete {
+  padding: 5px;
   background-color: #cc2233;
 }
 .delete:hover {
