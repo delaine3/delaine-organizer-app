@@ -117,8 +117,7 @@ export default function Activities() {
       
         <div className=" item-grid">
           {dataBaseItems.map((database, id) => (
-            <div className="insertedItem" key={database.id}>
-              <p className="date">{database.displayDate}</p>
+            <div className="insertedItem-short" key={database.id}>
               <p> {database.activity}</p>Added by: <i>{database.author}</i>
               <br />
               <div

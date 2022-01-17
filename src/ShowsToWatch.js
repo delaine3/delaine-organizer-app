@@ -13,11 +13,9 @@ import { theDate } from "./Utilities/theDate";
 
 export default function ShowsToWatch() {
   const db = getFirestore();
-
   const currentUser = useAuth();
 
   const colRef = collection(db, "currentShows");
-
   const [currentSeason, setcurrentSeason] = useState("");
   const [streaming_service, setStreaming_service] = useState("");
 
@@ -167,8 +165,7 @@ export default function ShowsToWatch() {
 
   return (
     <div className="category" >
-      <br />
-      <br />
+      
 
       <form className="post-component">
         <label>Show Name</label>
@@ -195,44 +192,53 @@ export default function ShowsToWatch() {
         onChange={(e)=>setStreaming_service(e.target.value)}
         type="text"
         name="currentSeason"/>
-
         <button className="add-post" onClick={addItem}>Add show</button>
       </form>
-
       <div>
         {" "}
         <h2>Show List</h2>
-      
+      <h3>Currently watching</h3>
         <div className=" item-grid">
           {dataBaseItems.map((database, id) => (
+            <div>{ database.active ?
             <div className={updating || updatingSeason || updatingStreamingService? "insertedItem-tall" : "insertedItem-short"} key={database.id}>
           <p className="show">   {database.show}  <br/>   
-          <button
-                className="edit"
-                onClick={(e) => {
-                  setUpdating(true);
-                  setUpdatingSeason(false)
-                  setUpdatingStreamingService(false)
-                }}
-              >
-                Edit
-              </button> {updating ?  <button  
+          {updating ?  <button  
               className="cancel"  
               onClick={(e) => {
                   setUpdating(false);
                 }}>Cancel</button> 
                   : <></>}
-           {updating ? (
-                <div className="updating-show">
+           </p>  
+               <p> Current Season: {database.currentSeason }
+            <button
+                className="edit"
+                onClick={(e) => {
+                  setUpdatingSeason(true);
+                  setUpdating(false)
+                  setUpdatingStreamingService(false)
+                }}
+              >
+                Edit
+              </button>
+              {updatingSeason ?  <button  
+              className="cancel"  
+              onClick={(e) => {
+                  setUpdatingSeason(false)
+                  
+                }}>Cancel</button>  : <></>}
+             
+              {updatingSeason ? (
+                <div>
                   {" "}
-                  <p>Change show to:</p>
+                  <p>Change season to:</p>
                   <input
-                    value={editedEntry}
-                    onChange={(e) => setEditedEntry(e.target.value)}
+                    value={editedSeason}
+                    onChange={(e) => setEditedSeason(e.target.value)}
                   />{" "}
                   <button
                     onClick={(e) => {
-                      updateShow(database.id);
+                      updateCurrentSeason(database.id);
                     }}
                   >
                     Save
@@ -241,7 +247,100 @@ export default function ShowsToWatch() {
                 </div>
               ) : (
                 <div></div>
-              )}</p>  
+              )}    
+          
+            </p>    
+            <p> Streaming Service: {database.streaming_service }
+            <button
+                className="edit"
+                onClick={(e) => {
+                  setUpdatingStreamingService(true);
+                  setUpdating(false);
+                  setUpdatingSeason(false);
+                }}
+              >
+                Edit
+              </button>
+              {updatingStreamingService ?  <button  
+              className="cancel"  
+              onClick={(e) => {
+                  setUpdatingStreamingService(false)
+                }}>Cancel</button> : <></>}
+             
+              {updatingStreamingService ? (
+                <div>
+                  {" "}
+                  <p>Change streaming service to:</p>
+                  <input
+                    value={editedStreamingService}
+                    onChange={(e) => setEditedStreamingService(e.target.value)}
+                  />{" "}
+                  <button
+                    onClick={(e) => {
+                      updateStreamingService(database.id);
+                    }}
+                  >
+                    Save
+                  </button>
+                  
+                </div>
+              ) : (
+                <div></div>
+              )}
+            </p>  
+          <div className="active-buttons-container">
+              <div 
+                onClick={() => {
+                  toggleActive(!database.active,database.id);
+                }}
+              >
+                {database.active ? (
+                  <button className="activeStyleProgress">In Progress</button>
+                ) : (
+                  <button className="inactiveStyleProgress">Not In Progress</button>
+                )}
+              </div>
+              <div
+                onClick={() => {
+                  toggleCompletetionStatus(!database.completed,database.id);
+                }}
+              >
+                {database.completed ? (
+                  <button className="activeStyle">Completed</button>
+                ) : (
+                  <button className="inactiveStyle">Not Completed</button>
+                )}
+              </div>
+              </div>
+              <br />
+              <button
+                className="delete"
+                onClick={(e) => {
+                  deleteItem(database.id);
+                }}
+              >
+                Delete
+              </button>
+              <p>Added by: {database.author}</p>
+            </div> : <></>}
+            </div>
+          ))}
+          </div>
+          <br/>
+          <h3>Not currently watching</h3>
+          <div className=" item-grid">
+
+          {dataBaseItems.map((database, id) => (
+            <div>{ !database.active ?
+            <div className={updating || updatingSeason || updatingStreamingService? "insertedItem-tall" : "insertedItem-short"} key={database.id}>
+          <p className="show">   {database.show}  <br/>   
+          {updating ?  <button  
+              className="cancel"  
+              onClick={(e) => {
+                  setUpdating(false);
+                }}>Cancel</button> 
+                  : <></>}
+           </p>  
                <p> Current Season: {database.currentSeason }
             <button
                 className="edit"
@@ -348,9 +447,7 @@ export default function ShowsToWatch() {
                 )}
               </div>
               </div>
-    
               <br />
-           
               <button
                 className="delete"
                 onClick={(e) => {
@@ -360,9 +457,10 @@ export default function ShowsToWatch() {
                 Delete
               </button>
               <p>Added by: {database.author}</p>
-
+            </div> : <></>}
             </div>
           ))}
+          
         </div>
       </div>
     </div>
