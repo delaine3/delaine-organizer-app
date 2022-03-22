@@ -206,122 +206,12 @@ export default function ShowsToWatch() {
         <div className=" item-grid">
           {dataBaseItems.map((database, id) => (
             <div className={updating || updatingSeason || updatingStreamingService? "insertedItem-tall" : "insertedItem-short"} key={database.id}>
-          <p className="show">   {database.show}  <br/>   
-          <button
-                className="edit"
-                onClick={(e) => {
-                  setUpdating(true);
-                  setUpdatingSeason(false)
-                  setUpdatingStreamingService(false)
-                }}
-              >
-                Edit
-              </button> {updating ?  <button  
-              className="cancel"  
-              onClick={(e) => {
-                  setUpdating(false);
-                }}>Cancel</button> 
-                  : <></>}
-           {updating ? (
-                <div className="updating-show">
-                  {" "}
-                  <p>Change show to:</p>
-                  <input
-                    value={editedEntry}
-                    onChange={(e) => setEditedEntry(e.target.value)}
-                  />{" "}
-                  <button
-                    onClick={(e) => {
-                      updateShow(database.id);
-                    }}
-                  >
-                    Save
-                  </button>
-                 
-                </div>
-              ) : (
-                <div></div>
-              )}</p>  
-               <p> Current Season: {database.currentSeason }
-            <button
-                className="edit"
-                onClick={(e) => {
-                  setUpdatingSeason(true);
-                  setUpdating(false)
-                  setUpdatingStreamingService(false)
-                }}
-              >
-                Edit
-              </button>
-              {updatingSeason ?  <button  
-              className="cancel"  
-              onClick={(e) => {
-                  setUpdatingSeason(false)
-                  
-                }}>Cancel</button>  : <></>}
-             
-              {updatingSeason ? (
-                <div>
-                  {" "}
-                  <p>Change season to:</p>
-                  <input
-                    value={editedSeason}
-                    onChange={(e) => setEditedSeason(e.target.value)}
-                  />{" "}
-                  <button
-                    onClick={(e) => {
-                      updateCurrentSeason(database.id);
-                    }}
-                  >
-                    Save
-                  </button>
-                 
-                </div>
-              ) : (
-                <div></div>
-              )}    
-          
+          <p className="show">   {database.show} </p>  
+               <p> Current Season: {database.currentSeason }           
             </p>    
             <p> Streaming Service: {database.streaming_service }
-            <button
-                className="edit"
-                onClick={(e) => {
-                  setUpdatingStreamingService(true);
-                  setUpdating(false);
-                  setUpdatingSeason(false);
-                }}
-              >
-                Edit
-              </button>
-              {updatingStreamingService ?  <button  
-              className="cancel"  
-              onClick={(e) => {
-                  setUpdatingStreamingService(false)
-                }}>Cancel</button> : <></>}
-             
-              {updatingStreamingService ? (
-                <div>
-                  {" "}
-                  <p>Change streaming service to:</p>
-                  <input
-                    value={editedStreamingService}
-                    onChange={(e) => setEditedStreamingService(e.target.value)}
-                  />{" "}
-                  <button
-                    onClick={(e) => {
-                      updateStreamingService(database.id);
-                    }}
-                  >
-                    Save
-                  </button>
-                  
-                </div>
-              ) : (
-                <div></div>
-              )}
-
-            </p>  
-          
+     
+            </p>         
           
           
           <div className="active-buttons-container">
