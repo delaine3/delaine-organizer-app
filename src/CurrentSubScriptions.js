@@ -114,7 +114,7 @@ export default function CurrentSubScriptions() {
       
         <div className="item-grid">
           {dataBaseItems.map((database, id) => (
-            <div className={updating ? "insertedItem-tall" : "insertedItem-short"} key={database.id}>
+            <div className="insertedItem" key={database.id}>
               <p className="date">{database.displayDate}</p>
               <p> {database.subscription}</p>Added by: <i>{database.author}</i>
               <br />
@@ -144,12 +144,6 @@ export default function CurrentSubScriptions() {
                   >
                     Save
                   </button>
-                  <button  
-              className="cancel"  
-              onClick={(e) => {
-                  setUpdating(false);
-                }}>Cancel</button> 
-                
                 </div>
               ) : (
                 <div></div>

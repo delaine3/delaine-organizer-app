@@ -24,11 +24,10 @@ border: 2px solid black;
 margin: 10px;
 padding: 20px;
 width: 300px;
-height: 475px;
+height: 430px;
 background-color:#aa66aa;
 align-items: center;
 }
-
 .show{
   text-align: center;
   font-size: 1.5rem;
@@ -90,7 +89,6 @@ input{
   border-right: solid 1px black;
   padding: 10px;
   text-decoration: none;
-  font-size: 22px;
 }
 .nav-link:hover{
   margin: 10%;
@@ -104,7 +102,7 @@ input{
 padding: 20px;
 }
 
-h1, h2, h3{
+h1, h2{
   text-align: center;
 }
 p{
