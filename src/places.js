@@ -101,7 +101,7 @@ export default function Places() {
         <h1>Place List</h1>
         <div className="item-grid">
           {dataBaseItems.map((database, id) => (
-            <div className="insertedItem" key={database.id}>
+            <div className="inserted-item" key={database.id}>
               <p className="date">{database.displayDate}</p>
               <p> {database.place} </p>
               <p>Where: {database.location}</p>

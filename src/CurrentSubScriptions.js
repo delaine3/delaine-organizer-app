@@ -114,7 +114,7 @@ export default function CurrentSubScriptions() {
       
         <div className=" item-grid">
           {dataBaseItems.map((database, id) => (
-            <div className={updating ? "insertedItem-tall" : "insertedItem-short"} key={database.id}>
+            <div className="inserted-item" key={database.id}>
               <p className="date">{database.displayDate}</p>
               <p> {database.subscription}</p>Added by: <i>{database.author}</i>
               <br />

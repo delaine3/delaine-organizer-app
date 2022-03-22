@@ -104,7 +104,7 @@ export default function RandomPost() {
         <h2>Post List</h2>
         <div className="item-grid">
           {dataBaseItems.map((database, id) => (
-            <div className="insertedItem-short" key={database.id}>
+            <div className="inserted-item" key={database.id}>
               <p className="date">{database.displayDate}</p>
               <p> {database.post}</p>Added by: <i>{database.author}</i>
               <br />

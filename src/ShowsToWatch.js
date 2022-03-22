@@ -205,7 +205,7 @@ export default function ShowsToWatch() {
       
         <div className=" item-grid">
           {dataBaseItems.map((database, id) => (
-            <div className={updating || updatingSeason || updatingStreamingService? "insertedItem-tall" : "insertedItem-short"} key={database.id}>
+            <div className="inserted-item" key={database.id}>
           <p className="show">   {database.show}  <br/>   
           <button
                 className="edit"

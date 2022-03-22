@@ -19,27 +19,20 @@ ul{
 .updating-show{
   font-size: medium ;
 }
-.insertedItem-tall{
-border: 2px solid black;
-margin: 10px;
-padding: 20px;
-width: 300px;
-height: 430px;
-background-color:#aa66aa;
-align-items: center;
-}
+
 .show{
   text-align: center;
   font-size: 1.5rem;
   font-weight: 200;
 }
 
-.insertedItem-short{
+.inserted-item{
   border: 2px solid black;
   margin: 10px;
   padding: 20px;
   width: 300px;
   height: 350px;
+  min-width:fit-content;
   background-color:#aa66aa;
   }
 
