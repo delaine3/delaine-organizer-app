@@ -112,9 +112,9 @@ export default function CurrentSubScriptions() {
         {" "}
         <h2>Subscription List</h2>
       
-        <div className=" item-grid">
+        <div className="item-grid">
           {dataBaseItems.map((database, id) => (
-            <div className="inserted-item" key={database.id}>
+            <div className="insertedItem" key={database.id}>
               <p className="date">{database.displayDate}</p>
               <p> {database.subscription}</p>Added by: <i>{database.author}</i>
               <br />
@@ -129,7 +129,7 @@ export default function CurrentSubScriptions() {
                   <button className="inactiveStyle">Innactive</button>
                 )}
               </div>
-              {updating ? ( 
+              {updating ? (
                 <div>
                   {" "}
                   <p>Change subscription to:</p>
