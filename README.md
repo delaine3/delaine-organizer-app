@@ -7,8 +7,6 @@ This app allows user to create an account, login, logout and organise their subs
 - List of places to go
 - Shows and movies to watch
 
-[Go to live version of app](https://delaine-organizer-app8.herokuapp.com/)
-
 ## Technologies used:
 - Firebase Authentication
 - Firestore Databse
